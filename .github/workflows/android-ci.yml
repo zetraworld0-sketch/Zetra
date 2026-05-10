@@ -14,37 +14,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ☕ Set up Java 17
+      # ☕ Use Java 21 (REQUIRED for your dependencies)
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 21
 
-      # 🤖 Setup Android SDK (CLI)
+      # 🤖 Setup Android SDK
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
           accept-android-sdk-licenses: true
 
-      # 🚫 Remove Google TV add-on (causes license freeze)
+      # 🚫 Remove Google TV add-on (causes license issue)
       - name: Remove problematic SDK packages
         run: |
           sdkmanager --uninstall "add-ons;addon-googletvaddon-google-13" || true
 
-      # ✅ Force accept all licenses (non-interactive)
+      # ✅ Force accept licenses (non-interactive)
       - name: Accept all SDK licenses
         run: |
           yes | sdkmanager --licenses || true
 
-      # 📦 Install ONLY required SDK components
+      # 📦 Install required SDK packages
       - name: Install required SDK packages
         run: |
           sdkmanager "platform-tools" \
                      "platforms;android-34" \
                      "build-tools;34.0.0"
 
-      # 🔧 Create local.properties (important for Gradle)
+      # 🔧 Create local.properties
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_HOME" > local.properties
 
@@ -52,7 +52,7 @@ jobs:
       - name: Grant execute permission
         run: chmod +x gradlew
 
-      # ⚡ Cache Gradle (speeds up builds)
+      # ⚡ Cache Gradle
       - name: Cache Gradle
         uses: actions/cache@v4
         with:
