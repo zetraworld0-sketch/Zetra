@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- SPLASH SCREEN -->
+    <style name="Theme.ElementX.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splashscreen_bg_light</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/zetra_logo</item>
+        <item name="windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
+        <item name="postSplashScreenTheme">@style/Theme.ElementX</item>
+    </style>
+
+    <!-- MAIN APP THEME -->
+    <style name="Theme.ElementX" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+</resources>
