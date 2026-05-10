@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Splash Screen -->
-    <style name="Theme.Netscape.Splash" parent="Theme.SplashScreen">
+    <!-- SPLASH SCREEN -->
+    <style name="Theme.ElementX.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/splashscreen_bg_light</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/transparent</item>
-        <item name="postSplashScreenTheme">@style/Theme.Netscape</item>
+
+        <!-- THIS IS YOUR LOGO -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/zetra_logo</item>
+
+        <!-- Optional smooth icon bg -->
+        <item name="windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
+
+        <!-- After splash -->
+        <item name="postSplashScreenTheme">@style/Theme.ElementX</item>
     </style>
 
-    <!-- Main App Theme -->
-    <style name="Theme.Netscape" parent="Theme.Material3.Light.NoActionBar">
+    <!-- MAIN APP THEME -->
+    <style name="Theme.ElementX" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
