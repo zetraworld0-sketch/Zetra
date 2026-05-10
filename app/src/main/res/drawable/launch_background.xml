@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background -->
+    <item android:drawable="@color/splashscreen_bg_dark" />
+
+    <!-- Center Logo -->
+    <item>
+        <bitmap
+            android:src="@drawable/zetra_logo"
+            android:gravity="center"
+            android:antialias="true"
+            android:filter="true" />
+    </item>
+
+</layer-list>
