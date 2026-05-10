@@ -42,19 +42,21 @@ android {
 
 dependencies {
 
-    // Core Android
+    // Core
     implementation("androidx.core:core-ktx:1.13.1")
 
-    // Material 3 (FIXES your Theme.Material3 error)
+    // 🔥 REQUIRED for Theme.Material3 XML (THIS FIXES YOUR ERROR)
+    implementation("com.google.android.material:material:1.12.0")
+
+    // Compose (safe to keep)
     implementation("androidx.compose.material3:material3:1.2.1")
 
-    // Splash Screen (FIXES Theme.SplashScreen error)
+    // Splash screen
     implementation("androidx.core:core-splashscreen:1.0.1")
 
-    // Optional but safe (prevents random missing UI issues)
+    // AppCompat (required for compatibility)
     implementation("androidx.appcompat:appcompat:1.7.0")
 
-    // Timber (FIXES unresolved 'timber')
+    // Timber (for logs)
     implementation("com.jakewharton.timber:timber:5.0.1")
-
 }
