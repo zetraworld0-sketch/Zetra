@@ -2,45 +2,47 @@ name: Android CI
 
 on:
   push:
-    branches: [ develop ]
-  workflow_dispatch:
+    branches: [ "develop" ]
+  pull_request:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      # ✅ FORCE ACCEPT ALL LICENSES (FIX)
-      - name: Accept all SDK licenses
+      # 🚫 Remove Google TV addon (FIXED NAME)
+      - name: Remove unused SDK packages
+        run: |
+          sdkmanager --uninstall "add-ons;addon-google_tv_addon-google-13" || true
+
+      # ✅ Accept licenses (non-interactive)
+      - name: Accept SDK licenses
         run: yes | sdkmanager --licenses
 
-      # ✅ INSTALL ONLY WHAT YOU NEED (avoid extra licenses like Google TV)
-      - name: Install SDK packages
+      # 📦 Install required SDK packages
+      - name: Install required SDK packages
         run: |
-          sdkmanager "platform-tools" \
-                     "platforms;android-34" \
-                     "build-tools;34.0.0"
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
+      # 🔧 Ensure SDK path exists
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_HOME" > local.properties
 
+      # 🔧 Fix permission
       - name: Grant execute permission
         run: chmod +x gradlew
 
-      - name: Clean project
-        run: ./gradlew clean
-
-      - name: Build Debug APK
+      # 🏗️ Build
+      - name: Build
         run: ./gradlew assembleDebug --stacktrace
