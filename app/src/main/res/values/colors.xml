@@ -1,13 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2025 Element Creations Ltd.
-  ~ Copyright 2022 New Vector Ltd.
-  ~
-  ~ SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-Element-Commercial.
-  ~ Please see LICENSE files in the repository root for full details.
-  -->
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Must be equal to DarkColorTokens.colorThemeBg -->
-    <color name="splashscreen_bg_dark">#FF101317</color>
-    <!-- Must be equal to LightColorTokens.colorThemeBg -->
+
+    <!-- Splash -->
+    <color name="splashscreen_bg_dark">#FF0D0F1A</color>
     <color name="splashscreen_bg_light">#FFFFFFFF</color>
+
+    <!-- ZETRA BRAND COLORS -->
+    <color name="zetra_primary">#8A2BE2</color> <!-- purple -->
+    <color name="zetra_secondary">#FF4D6D</color> <!-- pink/red -->
+    <color name="zetra_accent">#FF8C00</color> <!-- orange -->
+
+    <!-- Backgrounds -->
+    <color name="background_light">#FFFFFF</color>
+    <color name="background_dark">#0D0F1A</color>
+
+    <!-- Text -->
+    <color name="text_primary">#111111</color>
+    <color name="text_secondary">#666666</color>
+
 </resources>
