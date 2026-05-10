@@ -1,56 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".ElementXApplication"
-        android:allowBackup="false"
-        android:appCategory="social"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:enableOnBackInvokedCallback="true"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="Netscape Messaging"
-        android:largeHeap="true"
-        android:localeConfig="@xml/locales_config"
-        android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:allowBackup="true"
+        android:icon="@drawable/zetra_logo"
+        android:roundIcon="@drawable/zetra_logo"
+        android:label="Zetra"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Netscape"
-        tools:targetApi="33">
+        android:theme="@style/Theme.ElementX">
 
         <activity
             android:name=".MainActivity"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode"
             android:exported="true"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Netscape.Splash"
-            android:windowSoftInputMode="adjustResize">
+            android:theme="@style/Theme.ElementX.Splash">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:host="open" android:scheme="netscape" />
-            </intent-filter>
-
         </activity>
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_providers" />
-        </provider>
 
     </application>
 
