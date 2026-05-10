@@ -28,7 +28,11 @@ android {
         buildConfig = true
     }
 
-    // ✅ FIXED (new Gradle 9+ way)
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     kotlin {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
@@ -39,9 +43,7 @@ android {
 dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
 
-    // Required for Material3 theme
-    implementation("com.google.android.material:material:1.12.0")
-
-    // Required for SplashScreen API
+    // REQUIRED for your theme errors earlier
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("com.google.android.material:material:1.12.0")
 }
