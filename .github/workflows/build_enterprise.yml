@@ -1,4 +1,4 @@
-name: Enterprise APK Build
+name: Android CI
 
 on:
   push:
@@ -9,13 +9,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Use JDK 21
+      # ✅ Use stable Java (IMPORTANT)
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '17'
 
-      - name: Build APK
-        run: ./gradlew assembleDebug
+      # ✅ Setup Android SDK
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # ✅ Fix missing local.properties
+      - name: Create local.properties
+        run: echo "sdk.dir=$ANDROID_HOME" > local.properties
+
+      # ✅ Make gradlew executable
+      - name: Grant execute permission
+        run: chmod +x gradlew
+
+      # ✅ Clean project
+      - name: Clean project
+        run: ./gradlew clean
+
+      # ✅ Build with FULL logs (so we see real errors)
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --stacktrace --info
