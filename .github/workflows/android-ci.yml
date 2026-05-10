@@ -21,6 +21,12 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: true
+
+      # ✅ THIS IS THE FIX (VERY IMPORTANT)
+      - name: Accept all Android SDK licenses
+        run: yes | sdkmanager --licenses
 
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_HOME" > local.properties
