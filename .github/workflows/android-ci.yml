@@ -1,4 +1,3 @@
-```yaml
 name: Android CI
 
 on:
@@ -67,4 +66,3 @@ jobs:
       # 🏗️ Build APK
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
-```
