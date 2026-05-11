@@ -13,17 +13,21 @@ plugins {
 repositories {
     mavenCentral()
     google()
-}
-
 dependencies {
-    implementation(libs.android.gradle.plugin)
-    implementation(libs.kotlin.gradle.plugin)
-    implementation(libs.kover.gradle.plugin)
-    implementation(platform(libs.google.firebase.bom))
-    implementation(libs.firebase.appdistribution.gradle)
+    implementation("com.android.tools.build:gradle:8.5.0")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0")
+
+    implementation("org.jetbrains.kotlinx:kover-gradle-plugin:0.7.5")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation("com.google.firebase:firebase-appdistribution-gradle:4.0.0")
+
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
-    implementation(libs.autonomousapps.dependencyanalysis.plugin)
-    implementation(libs.metro.gradle.plugin)
-    implementation(libs.ksp.gradle.plugin)
-    implementation(libs.compose.compiler.plugin)
+
+    implementation("com.autonomousapps:dependency-analysis-gradle-plugin:1.32.0")
+    implementation("dev.zacsweers.metro:gradle-plugin:0.13.2")
+    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.0.0-1.0.21")
+
+    // ✅ IMPORTANT: REMOVE this if still failing
+    // implementation(libs.compose.compiler.plugin)
 }
