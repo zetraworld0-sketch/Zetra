@@ -25,15 +25,14 @@ android {
         }
     }
 
-    // ✅ ENABLE COMPOSE (fixes setContent)
     buildFeatures {
         buildConfig = true
         compose = true
     }
 
-    // ✅ REQUIRED for Compose
+    // ✅ FIXED VERSION
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
+        kotlinCompilerExtensionVersion = "1.5.13"
     }
 
     compileOptions {
@@ -42,36 +41,34 @@ android {
     }
 
     kotlin {
-        compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-        }
+        jvmToolchain(17)
     }
 }
 
 dependencies {
 
+    // ✅ Compose BOM (manages all compose versions)
+    val composeBom = platform("androidx.compose:compose-bom:2024.05.00")
+    implementation(composeBom)
+
     // Core
     implementation("androidx.core:core-ktx:1.13.1")
 
-    // Material (XML UI)
+    // Material XML
     implementation("com.google.android.material:material:1.12.0")
 
-    // ✅ REQUIRED for setContent
+    // ✅ Required for setContent
     implementation("androidx.activity:activity-compose:1.9.0")
 
     // Compose
-    implementation("androidx.compose.material3:material3:1.2.1")
+    implementation("androidx.compose.material3:material3")
 
-    // ✅ REQUIRED for repeatOnLifecycle
+    // ✅ Required for repeatOnLifecycle
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
-    // Splash screen
+    // Others
     implementation("androidx.core:core-splashscreen:1.0.1")
-
-    // AppCompat
     implementation("androidx.appcompat:appcompat:1.7.0")
-
-    // Timber
     implementation("com.jakewharton.timber:timber:5.0.1")
 }
 ```
