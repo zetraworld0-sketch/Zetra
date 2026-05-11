@@ -13,35 +13,30 @@ plugins {
 repositories {
     google()
     mavenCentral()
+    gradlePluginPortal()
 }
 
 dependencies {
 
-    // Android Gradle Plugin
-    implementation("com.android.tools.build:gradle:8.5.0")
+    // ✅ FIX: Force compatible Android Gradle Plugin
+    implementation("com.android.tools.build:gradle:8.4.0")
 
-    // Kotlin Gradle Plugin
+    // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0")
-
-    // Kover (code coverage)
-    implementation("org.jetbrains.kotlinx:kover-gradle-plugin:0.7.5")
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-appdistribution-gradle:4.0.0")
 
-    // Required internal classpath trick (keep this)
-    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+    // KSP
+    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.0.0-1.0.24")
 
-    // Dependency analysis
+    // Compose compiler plugin (required for Kotlin 2.0)
+    implementation("org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.0.0")
+
+    // Dependency analysis (safe version)
     implementation("com.autonomousapps:dependency-analysis-gradle-plugin:1.32.0")
 
-    // Metro plugin (requires Java 21 → your CI already fixed this)
+    // Metro plugin (keep your original)
     implementation("dev.zacsweers.metro:gradle-plugin:0.13.2")
-
-    // KSP
-    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.0.0-1.0.21")
-
-    // ❌ REMOVED (this was breaking Gradle)
-    // implementation(libs.compose.compiler.plugin)
 }
