@@ -1,3 +1,4 @@
+```kotlin
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -24,8 +25,15 @@ android {
         }
     }
 
+    // ✅ ENABLE COMPOSE (fixes setContent)
     buildFeatures {
         buildConfig = true
+        compose = true
+    }
+
+    // ✅ REQUIRED for Compose
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 
     compileOptions {
@@ -45,18 +53,25 @@ dependencies {
     // Core
     implementation("androidx.core:core-ktx:1.13.1")
 
-    // 🔥 REQUIRED for Theme.Material3 XML (THIS FIXES YOUR ERROR)
+    // Material (XML UI)
     implementation("com.google.android.material:material:1.12.0")
 
-    // Compose (safe to keep)
+    // ✅ REQUIRED for setContent
+    implementation("androidx.activity:activity-compose:1.9.0")
+
+    // Compose
     implementation("androidx.compose.material3:material3:1.2.1")
+
+    // ✅ REQUIRED for repeatOnLifecycle
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
     // Splash screen
     implementation("androidx.core:core-splashscreen:1.0.1")
 
-    // AppCompat (required for compatibility)
+    // AppCompat
     implementation("androidx.appcompat:appcompat:1.7.0")
 
-    // Timber (for logs)
+    // Timber
     implementation("com.jakewharton.timber:timber:5.0.1")
 }
+```
